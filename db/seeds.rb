@@ -16,6 +16,16 @@ posts = Post.all
 	)
 end
 
+qpost = Post.find_or_create_by(
+	title: "Test Post"
+	body: "Test Body"
+)
+
+qcom = Comment.find_or_create_by(
+	post: posts.first
+	body: "Body"
+)
+
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
