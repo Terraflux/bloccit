@@ -1,4 +1,8 @@
 .social-btn {
-	height: 100px
-	width:20px
+	border: 1px solid black;
+	display: inline-block;
+	
+	&:hover {
+		background-color: red;
+	}
 }
