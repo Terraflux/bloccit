@@ -11,21 +11,30 @@ posts = Post.all
 
 100.times do
 	Comment.create!(
-		post: posts.sample
+		post: posts.sample,
 		body: RandomData.random_paragraph
 	)
 end
 
+25.times do
+	Advertisement.create!(
+		title: RandomData.random_sentence,
+		copy: RandomData.random_paragraph,
+		price: RandomData.random_number
+	)
+end
+
 qpost = Post.find_or_create_by(
-	title: "Test Post"
+	title: "Test Post",
 	body: "Test Body"
 )
 
 qcom = Comment.find_or_create_by(
-	post: posts.first
+	post: posts.first,
 	body: "Body"
 )
 
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+puts "#{Advertisement.count} ads created"
