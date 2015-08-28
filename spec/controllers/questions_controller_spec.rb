@@ -11,13 +11,13 @@ RSpec.describe QuestionsController, type: :controller do
 
     it "assigns question to @questions" do
       get :index
-      expect(assigns(:question)).to eq([question])
+      expect(assigns(:questions)).to eq([question])
     end
   end
 
   describe "GET #show" do
     it "returns http success" do
-      get :show
+      get :show, {id: question.id}
       expect(response).to have_http_status(:success)
     end
     it "renders the #show view" do
@@ -26,7 +26,7 @@ RSpec.describe QuestionsController, type: :controller do
     end
     it "assigns question to @questions" do
       get :show, {id: question.id}
-      expect(response).to eq(question)
+      expect(assigns(:question)).to eq(question)
     end
   end
 
@@ -47,14 +47,14 @@ RSpec.describe QuestionsController, type: :controller do
 
   describe "GET #create" do
     it "increases the number of questions by 1" do
-      expect{question :create, question: {title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: true}}.to change(Question,:count).by(1)
+      expect{post :create, question: {title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: true}}.to change(Question,:count).by(1)
     end
     it "assigns the new question to @questions" do
-      question :create, question: {title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: true}
+      post :create, question: {title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: true}
       expect(assigns(:question)).to eq Question.last
     end
     it "redirects to new question" do
-      question :create, question: {title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: true}
+      post :create, question: {title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: true}
       expect(response).to redirect_to Question.last
     end
   end
