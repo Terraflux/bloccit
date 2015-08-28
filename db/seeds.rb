@@ -24,6 +24,13 @@ end
 	)
 end
 
+10.times do
+	Question.create!(
+		title: RandomData.random_sentence,
+		body: RandomData.random_paragraph,
+	)
+end
+
 qpost = Post.find_or_create_by(
 	title: "Test Post",
 	body: "Test Body"
@@ -38,3 +45,4 @@ puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Advertisement.count} ads created"
+puts "#{Question.count} questions created"
