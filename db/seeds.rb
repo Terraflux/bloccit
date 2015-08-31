@@ -1,7 +1,16 @@
 include RandomData
 
+15.times do
+	Topic.create!(
+		name: RandomData.random_sentence,
+		description: RandomData.random_paragraph
+	)
+end
+topics = Topic.all
+
 50.times do
 	Post.create!(
+		topic: topics.sample,
 		title: RandomData.random_sentence,
 		body: RandomData.random_paragraph
 	)
@@ -15,6 +24,7 @@ posts = Post.all
 		body: RandomData.random_paragraph
 	)
 end
+comments = Comment.all
 
 25.times do
 	Advertisement.create!(
@@ -23,6 +33,7 @@ end
 		price: RandomData.random_number
 	)
 end
+advertisements = Advertisement.all
 
 10.times do
 	Question.create!(
@@ -30,6 +41,7 @@ end
 		body: RandomData.random_paragraph,
 	)
 end
+questions = Question.all
 
 qpost = Post.find_or_create_by(
 	title: "Test Post",
@@ -42,6 +54,7 @@ qcom = Comment.find_or_create_by(
 )
 
 puts "Seed finished"
+puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Advertisement.count} ads created"
