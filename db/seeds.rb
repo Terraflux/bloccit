@@ -43,6 +43,15 @@ advertisements = Advertisement.all
 end
 questions = Question.all
 
+5.times do
+	SponsoredPost.create!(
+		title: RandomData.random_sentence,
+		body: RandomData.random_paragraph,
+		price: RandomData.random_number
+		)
+end
+sposts = SponsoredPost.all
+
 qpost = Post.find_or_create_by(
 	title: "Test Post",
 	body: "Test Body"
@@ -59,3 +68,4 @@ puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Advertisement.count} ads created"
 puts "#{Question.count} questions created"
+puts "#{SponsoredPost.count} sponsored posts created"
