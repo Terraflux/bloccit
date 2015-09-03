@@ -15,7 +15,7 @@ class SponsoredPostsController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     @sponsored_post.topic = @topic
 
-  	if @post.save
+  	if @sponsored_post.save
   		flash[:notice] = "Sponsored post was saved."
   		redirect_to [@topic, @sponsored_post]
   	else
@@ -42,10 +42,10 @@ class SponsoredPostsController < ApplicationController
   end
 
   def destroy
-    @sponsored_post = Post.find(params[:id])
+    @sponsored_post = SponsoredPost.find(params[:id])
     if @sponsored_post.destroy
-      flash[:notice] = "\"#{@post.title}\" was deleted successfully"
-      redirect_to @post.topic
+      flash[:notice] = "\"#{@sponsored_post.title}\" was deleted successfully"
+      redirect_to @sponsored_post.topic
     else
       flash[:error] = "There was an error deleting the post."
       render :show
