@@ -17,6 +17,6 @@ Rails.application.routes.draw do
 
   get 'welcome/faq'
 
-  root to: 'topics#index'
+  root to: 'welcome#index'
 
 end
