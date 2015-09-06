@@ -16,11 +16,11 @@
 				<%= f.label :name %>
 				<%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: "Enter name" %>
 			<% end %>
-			<%= form_group_tag(@users.erros[:email]) do %>
+			<%= form_group_tag(@user.errors[:email]) do %>
 				<%= f.label :email %>
 				<%= f.email_field :email, class: 'form-control', placeholder: "Enter email" %>
 			<% end %>
-			<%= form_group_tag(@users.errors[:password]) do %>
+			<%= form_group_tag(@user.errors[:password]) do %>
 				<%= f.label :password %>
 				<%= f.password_field :password, class: 'form-control', placeholder: "Enter password" %>
 			<% end %>

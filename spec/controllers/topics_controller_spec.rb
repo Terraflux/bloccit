@@ -29,7 +29,7 @@ RSpec.describe TopicsController, type: :controller do
 	end
 	describe "POST create" do
 		it "increases the number of topics by 1" do
-			expect {post :create, {topic: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}}.to change(Topic,:count).by(1)
+			expect {post :create, {topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}}}.to change(Topic,:count).by(1)
 		end
 	end
 	describe "GET edit" do
