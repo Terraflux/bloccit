@@ -9,3 +9,23 @@
 .nav {
 	margin-top: 5px;
 }
+
+.navbar {
+	margin: 10px;
+	font-size: 1.5em;
+}
+
+.navblock {
+	border: 1px solid black;
+	display: inline-block;
+	padding: 5px;
+	margin: 5px;
+}
+
+.navblock:hover {
+	background-color: blue;
+}
+
+.header {
+	display: inline-block;
+}
