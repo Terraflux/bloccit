@@ -1,0 +1,9 @@
+<div class="media">
+	<div class="media-body">
+		<h3><%= link_to post.title, [@topic, post] %></h3>
+		<small>
+			<%= post.user.name %> posted <%= time_ago_in_words(post.created_at) %>
+		</small>
+		<p><%= post.body %></p>
+	</div>
+</div>

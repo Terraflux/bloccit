@@ -19,31 +19,9 @@
 				<%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
 			<% end %>
 		</div>
-		<%= @topic.posts.each do |post| %>
-			<div class="media">
-				<div class="media-body">
-					<h4 class="media-heading">
-						<%= link_to post.title, topic_post_path(@topic, post) %>
-					</h4>
-					<small>
-						submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> <br>
-						<%= post.comments.count %> Comments
-					</small>
-				</div>
-			</div>
-		<% end %>
-		<%= @topic.posts.each do |post| %>
-			<div class="media">
-				<div class="media-body">
-					<h4 class="media-heading">
-						<%= link_to post.title, topic_post_path(@topic, post) %>
-					</h4>
-					<small>
-						submitted <%= time_ago_in_words(post.created_at) %> ago <br>
-						<%= post.comments.count %> Comments
-					</small>
-				</div>
-			</div>
-		<% end %>
+		<div>
+			<h3>Posts</h3>
+			<%= render @topic.posts %>
+		</div>
 	</div>
 </div>
