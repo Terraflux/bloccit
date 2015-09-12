@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'labels/show'
+
   resources :questions
 
   resources :advertisements
