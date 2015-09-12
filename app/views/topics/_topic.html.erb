@@ -1,6 +1,9 @@
 <div class="media">
 	<div class="media-body">
 		<h3><%= link_to topic.name, topic %></h3>
-		<p><%= topic.description %></p>
+		<small>
+			<p><%= topic.description %></p>
+			<%= render partial: "labels/list", locals: {labels: topic.labels} %>
+		</small>
 	</div>
 </div>
