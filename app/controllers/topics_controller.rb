@@ -60,6 +60,6 @@ class TopicsController < ApplicationController
 			return if current_user.admin?
 		end
 		flash[:error] = "You must be an admin to do that."
-		redirect_to topics_path	
+		redirect_to topics_path
 	end
 end
