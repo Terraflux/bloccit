@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
 	belongs_to :topic
 	belongs_to :user
 	has_many :comments, dependent: :destroy
+	has_one :rating, as: :rateable
 	has_many :labelings, as: :labelable
 	has_many :labels, through: :labelings
 	validates :title, length: {minimum: 5}, presence: true
