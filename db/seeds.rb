@@ -11,7 +11,7 @@ users = User.all
 
 15.times do
 	Topic.create!(
-		name: RandomData.random_sentence,
+		name: RandomData.random_sentence, 
 		description: RandomData.random_paragraph
 	)
 end
