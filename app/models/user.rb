@@ -1,16 +1,9 @@
 class User < ActiveRecord::Base
-	has_many :posts
-	has_many :comments
+	has_many :posts, dependent: :destroy
+	has_many :comments, dependent: :destroy
+	has_many :votes, dependent: :destroy
 	before_save {self.email = email.downcase}
 	before_save {self.role ||= :member}
-#	before_save {
-#		capray = []
-#		self.name.split.each do |x|
-#			capray << x.capitalize
-#		end
-#		self.name = capray.join(" ")
-#	}
-
 	EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :name, length: {minimum: 1, maximum: 100}, presence: true
 	validates :password, length: {minimum: 6}, presence: true
