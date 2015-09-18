@@ -4,6 +4,7 @@
 		<small>
 			<p><%= topic.description %></p>
 			<%= render partial: "labels/list", locals: {labels: topic.labels} %>
+			<%= render partial: "ratings/rating", locals: {ratings: topic.rating} %>
 		</small>
 	</div>
 </div>
