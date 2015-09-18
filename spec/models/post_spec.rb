@@ -26,6 +26,12 @@ RSpec.describe Post, type: :model do
   		expect(post).to respond_to(:body)
   	end
   end
+  context "after_create create_upvote" do
+    it "should automatically upvote post after creation" do
+      newpost = topic.posts.create!(title: "The New Post", body: RandomData.random_paragraph, user: user)
+      expect(newpost.points).to eq(1)
+    end
+  end
   describe "voting" do
     before do
       3.times {post.votes.create!(value: 1)}
@@ -33,7 +39,7 @@ RSpec.describe Post, type: :model do
     end
     describe "upvotes" do
       it "counts the number of votes with value = 1" do
-        expect(post.up_votes).to eq(3)
+        expect(post.up_votes).to eq(4)
       end
     end
     describe "downvotes" do
@@ -43,7 +49,7 @@ RSpec.describe Post, type: :model do
     end
     describe "points" do
       it "returns the sum of all the down and up votes" do
-        expect(post.points).to eq(1)
+        expect(post.points).to eq(2)
       end
     end
     describe "#update_rank" do
@@ -54,12 +60,12 @@ RSpec.describe Post, type: :model do
       it "updates therank when an up vote is created" do
         old_rank = post.rank
         post.votes.create!(value: 1)
-        expect(post.rank).to eq (old_rank + 1)
+        expect(post.rank).to eq(old_rank + 1)
       end
       it "updates the rank when a down vote is created" do
         old_rank = post.rank
         post.votes.create!(value:-1)
-        expect(post.rank).to eq (old_rank -1)
+        expect(post.rank).to eq(old_rank -1)
       end
     end
   end
