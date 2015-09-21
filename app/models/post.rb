@@ -11,6 +11,7 @@ class Post < ActiveRecord::Base
 	validates :topic, presence: true
 	validates :user, presence: true
 	default_scope{order('rank DESC')}
+	scope :visible_to, -> (user) {user ? all : joins(:topic).where('topics.public' => true)}
 
 	def up_votes
 		votes.where(value: 1).count
