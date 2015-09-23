@@ -4,14 +4,21 @@ class TopicsController < ApplicationController
 	before_action :authorize_user, except: [:index, :show]
 
 	def index
-		@topics = Topic.all
+		@topics = Topic.visible_to(current_user)
 	end
 	def show
 		@topic = Topic.find(params[:id])
+
+		unless @topic.public || current_user
+			flash[:error] = "You must be signed in to view private topics."
+			redirect_to new_session_path
+		end
 	end
+
 	def new
 		@topic = Topic.new
 	end
+
 	def create
 		@topic = Topic.new(topic_params)
 		if @topic.save
@@ -22,9 +29,11 @@ class TopicsController < ApplicationController
 			render :new
 		end
 	end
+
 	def edit
 		@topic = Topic.find(params[:id])
 	end
+	
 	def update
 		@topic = Topic.find(params[:id])
 		@topic.assign_attributes(topic_params)
