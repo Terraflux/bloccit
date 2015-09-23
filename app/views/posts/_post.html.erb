@@ -1,4 +1,4 @@
-<div class="media">
+<div class="media" id=<%= "post-#{post.id}" %>>
 	<div class="media-body">
 		<%= render partial: 'votes/voter', locals: {post: post} %>
 		<h3>
