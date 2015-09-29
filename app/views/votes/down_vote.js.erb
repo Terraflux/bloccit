@@ -1,1 +1,1 @@
-$(<%= "#post-#{@post.id} .vote-arrows" %>).html("<%= escape_javascript(render partial: 'votes/voter', locals: {post: @post}) %>");
+$("#post-<%= @post.id %> .vote-arrows").html("<%= escape_javascript(render partial: 'votes/voter', locals: {post: @post}) %>");
