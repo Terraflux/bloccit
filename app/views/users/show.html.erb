@@ -19,8 +19,11 @@
 	</div>
 </div>
 
+<h2>Favorites</h2>
+<%= render @user.favorites.posts %>
+
 <h2>Posts</h2>
 <%= render @user.posts %>
 
 <h2>Comments</h2>
-<%= render @user.comments %>
+<%= user_has_comments? %>
