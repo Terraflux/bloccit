@@ -23,13 +23,13 @@ class Api::V1::PostsController < Api::V1::BaseController
 	end
 
 	def create
-		post = @topic.posts.build(post_params)
+		post = Post.build(post_params)
 		post.user = current_user
 		if post.valid?
 			post.save!
 			render json: post.to_json, status: 200
 		else
-			render json: {error: "Post update failed", status: 400}, status: 400
+			render json: {error: "Post creation failed", status: 400}, status: 400
 		end
 	end
 

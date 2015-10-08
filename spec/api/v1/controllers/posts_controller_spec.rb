@@ -79,5 +79,33 @@ RSpec.describe Api::V1::PostsController, type: :controller do
 				expect(my_post.body).to eq @new_post.body
 			end
 		end
+
+		describe "POST create" do
+			before {post :create, post: {title: @new_post.title, body: @new_post.body}}
+			it "returns http success" do
+				expect(response).to have_http_status(:success)
+			end
+			it "returns json content type" do
+				expect(response.content_type).to eq 'application/json'
+			end
+			it "creates a post with the correct attributes" do
+				hashed_json = JSON.parse(response.body)
+				expect(@new_post.title).to eq hashed_json["title"]
+				expect(@new_post.body).to eq hashed_json["body"]
+			end
+		end
+
+		describe "DELETE destroy" do
+			before {delete :destroy, id: my_post.id}
+			it "returns http success" do
+				expect(response).to have_http_status(:success)
+			end
+			it "returns the correct json message" do
+				expect(response.body).to eq({"message" => "Post destroyed", "status" => 200}.to_json)
+			end
+			it "delete my_post" do
+				expect{Post.find(my_post.id)}.to raise_exception(ActiveRecord::RecordNotFound)
+			end
+		end
 	end
 end

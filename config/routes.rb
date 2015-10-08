@@ -40,7 +40,7 @@ Rails.application.routes.draw do
       resources :topics, except: [:edit, :new] do
         resources :posts, only: [:index, :show, :update, :destroy, :create]
       end
-      resources :posts, only: [:index] do
+      resources :posts, only: [:index, :destroy, :update, :create] do
         resources :comments, only: [:index, :show]
       end
     end
